@@ -54,7 +54,7 @@ public class Main {
             if (choice != 0 && choice >= 1 && choice <= 3) {
                 System.out.print("\nНажмите Enter для возврата в главное меню...");
                 scanner.nextLine();
-                scanner.nextLine(); //await
+                scanner.nextLine();
             }
 
         } while (choice != 0);
