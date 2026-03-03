@@ -1,0 +1,73 @@
+{
+    "date": "Tue Mar 03 12:49:05 MSK 2026",
+    "count": 6,
+    "students": [
+        {
+            "lastName": "Иванов",
+            "firstName": "Иван",
+            "teacherName": "Сидоров А.П.",
+            "discipline": "Объектно-ориентированное программирование",
+            "department": "Программная инженерия",
+            "egeScore": 87,
+            "idStudent": "2023001",
+            "mark": 9,
+            "group": "ПИ-21"
+        },
+        {
+            "lastName": "Петрова",
+            "firstName": "Мария",
+            "teacherName": "Кузнецова Е.В.",
+            "discipline": "Базы данных",
+            "department": "Программная инженерия",
+            "egeScore": 92,
+            "idStudent": "2023002",
+            "mark": 8,
+            "group": "ПИ-22"
+        },
+        {
+            "lastName": "Сидоров",
+            "firstName": "Алексей",
+            "teacherName": "Васильева Т.И.",
+            "discipline": "Веб-программирование",
+            "department": "Информатика и вычислительная техника",
+            "egeScore": 78,
+            "idStudent": "2023003",
+            "mark": 10,
+            "group": "ИВТ-21"
+        },
+        {
+            "lastName": "Алексеев",
+            "firstName": "Дмитрий",
+            "teacherName": "Петров В.И.",
+            "discipline": "Математический анализ",
+            "department": "Программная инженерия",
+            "egeScore": 85,
+            "idStudent": "2023004",
+            "mark": 7,
+            "group": "ПИ-21"
+        },
+        {
+            "lastName": "Васильева",
+            "firstName": "Елена",
+            "teacherName": "Смирнов К.Л.",
+            "discipline": "Физика",
+            "department": "Информатика и вычислительная техника",
+            "egeScore": 95,
+            "idStudent": "2023005",
+            "mark": 9,
+            "group": "ИВТ-22"
+        },
+        {
+            "lastName": "Коленченко",
+            "firstName": "Максим",
+            "teacherName": "Зотов Е.М",
+            "discipline": "Программирования на Java",
+            "department": "Математика и иформационные технологии",
+            "egeScore": 0,
+            "idStudent": "317820",
+            "mark": 10,
+            "group": "ВПИ-25"
+        }
+    ],
+    "version": "1.0"
+}
