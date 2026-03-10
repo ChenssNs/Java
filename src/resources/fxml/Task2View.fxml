@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="650.0" prefWidth="750.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.Task2Controller">
+    <top>
+        <Label alignment="CENTER" prefHeight="50.0" prefWidth="750.0"
+               style="-fx-background-color: #2196F3; -fx-text-fill: white;"
+               text="ЗАДАНИЕ 2: Минимальные значения в столбцах матрицы" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+    </top>
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="15.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" spacing="20.0">
+                    <children>
+                        <Label text="Строки:" />
+                        <Slider fx:id="rowsSlider" blockIncrement="1.0" majorTickUnit="1.0"
+                                max="8.0" min="2.0" showTickLabels="true" showTickMarks="true"
+                                snapToTicks="true" value="4.0" />
+                        <TextField fx:id="rowsField" editable="false" prefWidth="40.0"
+                                   text="4" />
+                        <Label text="Столбцы:" />
+                        <Slider fx:id="colsSlider" blockIncrement="1.0" majorTickUnit="1.0"
+                                max="8.0" min="2.0" showTickLabels="true" showTickMarks="true"
+                                snapToTicks="true" value="4.0" />
+                        <TextField fx:id="colsField" editable="false" prefWidth="40.0"
+                                   text="4" />
+                    </children>
+                </HBox>
+
+                <!-- ДОБАВЬТЕ ЭТУ СТРОКУ - infoLabel -->
+                <Label fx:id="infoLabel" text="Размер матрицы: 4x4" style="-fx-font-weight: bold;" />
+
+                <Button fx:id="btnGenerate" mnemonicParsing="false"
+                        onAction="#handleGenerateButton" prefHeight="40.0" prefWidth="200.0"
+                        style="-fx-background-color: #2196F3; -fx-text-fill: white;"
+                        text="Сгенерировать матрицу" />
+                <ScrollPane prefHeight="200.0" prefWidth="700.0">
+                    <content>
+                        <TextArea fx:id="matrixArea" editable="false" prefHeight="180.0"
+                                  prefWidth="680.0" wrapText="true" />
+                    </content>
+                </ScrollPane>
+                <Button fx:id="btnFindMin" mnemonicParsing="false"
+                        onAction="#handleFindMinButton" prefHeight="40.0" prefWidth="200.0"
+                        style="-fx-background-color: #FF9800; -fx-text-fill: white;"
+                        text="Найти минимумы в столбцах" />
+                <ScrollPane prefHeight="150.0" prefWidth="700.0">
+                    <content>
+                        <TextArea fx:id="resultArea" editable="false" prefHeight="130.0"
+                                  prefWidth="680.0" wrapText="true" />
+                    </content>
+                </ScrollPane>
+                <HBox alignment="CENTER" spacing="20.0">
+                    <children>
+                        <Label text="Поиск в конкретном столбце:" />
+                        <TextField fx:id="searchColumnField" prefWidth="50.0" promptText="№" />
+                        <Button fx:id="btnSearchColumn" mnemonicParsing="false"
+                                onAction="#handleSearchColumnButton" text="Найти" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
+    <bottom>
+        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBackButton"
+                prefHeight="40.0" prefWidth="150.0"
+                style="-fx-background-color: #f44336; -fx-text-fill: white;"
+                text="Назад в меню" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="15.0" />
+            </BorderPane.margin>
+        </Button>
+    </bottom>
+</BorderPane>

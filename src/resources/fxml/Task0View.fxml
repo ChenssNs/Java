@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.Task0Controller">
+    <top>
+        <Label alignment="CENTER" prefHeight="50.0" prefWidth="600.0"
+               style="-fx-background-color: #9C27B0; -fx-text-fill: white;"
+               text="ЗАДАНИЕ 0: Калькулятор с параметрами" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+    </top>
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+                <GridPane hgap="20.0" vgap="15.0">
+                    <children>
+                        <Label text="Число A:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="fieldA" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label text="Число B:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="fieldB" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                </GridPane>
+
+                <HBox alignment="CENTER" spacing="20.0">
+                    <children>
+                        <Button fx:id="btnCalculate" mnemonicParsing="false"
+                                onAction="#handleCalculateButton" prefHeight="40.0" prefWidth="150.0"
+                                style="-fx-background-color: #9C27B0; -fx-text-fill: white;"
+                                text="Вычислить" />
+                        <Button fx:id="btnClear" mnemonicParsing="false"
+                                onAction="#handleClearButton" prefHeight="40.0" prefWidth="150.0"
+                                text="Очистить" />
+                    </children>
+                </HBox>
+
+                <!-- ДОБАВЬТЕ ЭТУ СТРОКУ - statusLabel -->
+                <Label fx:id="statusLabel" text="Готов к работе" style="-fx-font-weight: bold;" />
+
+                <TextArea fx:id="resultArea" editable="false" prefHeight="200.0"
+                          prefWidth="550.0" wrapText="true" />
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
+    <bottom>
+        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBackButton"
+                prefHeight="40.0" prefWidth="150.0"
+                style="-fx-background-color: #f44336; -fx-text-fill: white;"
+                text="Назад в меню" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="15.0" />
+            </BorderPane.margin>
+        </Button>
+    </bottom>
+</BorderPane>

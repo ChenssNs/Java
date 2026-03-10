@@ -1,12 +1,12 @@
 {
-    "date": "Tue Mar 03 12:49:05 MSK 2026",
+    "date": "Tue Mar 10 20:29:40 MSK 2026",
     "count": 6,
     "students": [
         {
             "lastName": "Иванов",
             "firstName": "Иван",
             "teacherName": "Сидоров А.П.",
-            "discipline": "Объектно-ориентированное программирование",
+            "discipline": "ООП",
             "department": "Программная инженерия",
             "egeScore": 87,
             "idStudent": "2023001",
@@ -29,7 +29,7 @@
             "firstName": "Алексей",
             "teacherName": "Васильева Т.И.",
             "discipline": "Веб-программирование",
-            "department": "Информатика и вычислительная техника",
+            "department": "Информатика",
             "egeScore": 78,
             "idStudent": "2023003",
             "mark": 10,
@@ -39,7 +39,7 @@
             "lastName": "Алексеев",
             "firstName": "Дмитрий",
             "teacherName": "Петров В.И.",
-            "discipline": "Математический анализ",
+            "discipline": "Математика",
             "department": "Программная инженерия",
             "egeScore": 85,
             "idStudent": "2023004",
@@ -51,23 +51,22 @@
             "firstName": "Елена",
             "teacherName": "Смирнов К.Л.",
             "discipline": "Физика",
-            "department": "Информатика и вычислительная техника",
+            "department": "Информатика",
             "egeScore": 95,
             "idStudent": "2023005",
             "mark": 9,
             "group": "ИВТ-22"
         },
         {
-            "lastName": "Коленченко",
-            "firstName": "Максим",
-            "teacherName": "Зотов Е.М",
-            "discipline": "Программирования на Java",
-            "department": "Математика и иформационные технологии",
-            "egeScore": 0,
-            "idStudent": "317820",
-            "mark": 10,
-            "group": "ВПИ-25"
+            "lastName": "123",
+            "firstName": "123",
+            "teacherName": "123",
+            "discipline": "123",
+            "department": "123",
+            "egeScore": 123,
+            "idStudent": "123",
+            "mark": 123,
+            "group": "123"
         }
-    ],
-    "version": "1.0"
+    ]
 }
