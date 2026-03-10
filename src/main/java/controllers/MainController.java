@@ -56,41 +56,57 @@ public class MainController {
 
     private void openTaskWindow(String fxmlPath, String title) {
         try {
-            System.out.println("Загрузка окна: " + fxmlPath);
+            System.out.println("Загрузка окна: " + title);
+            System.out.println("Ищем файл: " + fxmlPath);
 
-            String cleanPath = fxmlPath.startsWith("/") ? fxmlPath.substring(1) : fxmlPath;
-            System.out.println("Очищенный путь: " + cleanPath);
-
-            FXMLLoader loader = new FXMLLoader();
-
-            loader.setLocation(getClass().getResource("/" + cleanPath));
-            System.out.println("Путь 1 (/fxml/...): " + loader.getLocation());
-
-            if (loader.getLocation() == null) {
-                loader.setLocation(getClass().getResource(cleanPath));
-                System.out.println("Путь 2 (fxml/...): " + loader.getLocation());
+            // ВАЖНО: путь должен начинаться с /
+            String correctedPath = fxmlPath;
+            if (!correctedPath.startsWith("/")) {
+                correctedPath = "/" + correctedPath;
             }
 
+            System.out.println("Исправленный путь: " + correctedPath);
+
+            // Загружаем FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(correctedPath));
+
             if (loader.getLocation() == null) {
-                System.err.println("НЕ НАЙДЕН ФАЙЛ: " + fxmlPath);
-                System.err.println("Текущая директория: " + System.getProperty("user.dir"));
-                System.err.println("Classpath: " + getClass().getResource("/"));
+                System.err.println("FXML файл не найден: " + correctedPath);
+                System.err.println("Проверьте, что файл существует в папке: src/main/resources/fxml/");
+
+                // Показываем все доступные ресурсы
+                System.out.println("Доступные ресурсы в /fxml/:");
+                try {
+                    java.net.URL fxmlFolder = getClass().getResource("/fxml");
+                    System.out.println("Папка fxml: " + fxmlFolder);
+                } catch (Exception e) {
+                    System.err.println("Не удалось получить список ресурсов");
+                }
                 return;
             }
 
             Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Подключаем CSS если есть
+            try {
+                scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+            } catch (Exception e) {
+                System.out.println("CSS не найден, продолжаем без стилей");
+            }
+
             Stage taskStage = new Stage();
             taskStage.setTitle(title);
-            taskStage.setScene(new Scene(root));
-            taskStage.initModality(Modality.WINDOW_MODAL);
-            taskStage.initOwner(primaryStage);
+            taskStage.setScene(scene);
+
+            if (primaryStage != null) {
+                taskStage.initOwner(primaryStage);
+            }
+
             taskStage.showAndWait();
 
         } catch (IOException e) {
             System.err.println("Ошибка загрузки окна " + title + ":");
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.err.println("Неожиданная ошибка:");
             e.printStackTrace();
         }
     }

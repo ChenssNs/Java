@@ -4,6 +4,7 @@ controllers\Task0Controller.class
 domain\Student.class
 controllers\Task3Controller.class
 tasks\Task1.class
+utils\AnimationUtils.class
 Main.class
 controllers\Task2Controller.class
 controllers\MainController.class

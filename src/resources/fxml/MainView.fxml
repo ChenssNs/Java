@@ -9,13 +9,15 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0"
-            xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.MainController">
     <top>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0"
-               prefWidth="600.0" text="СБОРНИК ЗАДАНИЙ ПО JAVA" BorderPane.alignment="CENTER">
+        <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0"
+               styleClass="title-label" text="СБОРНИК ЗАДАНИЙ ПО JAVA"
+               BorderPane.alignment="CENTER">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font size="24.0" />
             </font>
         </Label>
     </top>
@@ -24,40 +26,35 @@
             <children>
                 <Button fx:id="btnTask1" mnemonicParsing="false"
                         onAction="#handleTask1Button" prefHeight="60.0" prefWidth="300.0"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;"
-                        text="1. Массив с N максимальными значениями">
+                        styleClass="task-button" text="1. Массив с N максимальными значениями">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Button>
                 <Button fx:id="btnTask2" mnemonicParsing="false"
                         onAction="#handleTask2Button" prefHeight="60.0" prefWidth="300.0"
-                        style="-fx-background-color: #2196F3; -fx-text-fill: white;"
-                        text="2. Минимальные значения в столбцах матрицы">
+                        styleClass="task-button" text="2. Минимальные значения в столбцах матрицы">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Button>
                 <Button fx:id="btnTask3" mnemonicParsing="false"
                         onAction="#handleTask3Button" prefHeight="60.0" prefWidth="300.0"
-                        style="-fx-background-color: #FF9800; -fx-text-fill: white;"
-                        text="3. Класс Student (успеваемость)">
+                        styleClass="task-button" text="3. Класс Student (успеваемость)">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Button>
                 <Button fx:id="btnTask0" mnemonicParsing="false"
                         onAction="#handleTask0Button" prefHeight="60.0" prefWidth="300.0"
-                        style="-fx-background-color: #9C27B0; -fx-text-fill: white;"
-                        text="0. Калькулятор с параметрами">
+                        styleClass="task-button" text="0. Калькулятор с параметрами">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Button>
                 <Button fx:id="btnExit" mnemonicParsing="false"
                         onAction="#handleExitButton" prefHeight="50.0" prefWidth="200.0"
-                        style="-fx-background-color: #f44336; -fx-text-fill: white;"
-                        text="Выход">
+                        styleClass="exit-button" text="Выход">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -70,6 +67,7 @@
     </center>
     <bottom>
         <Label alignment="CENTER" prefHeight="30.0" prefWidth="600.0"
-               text="2026 - Коленченко Максим Андреевич" BorderPane.alignment="CENTER" />
+               styleClass="subtitle-label" text="© 2026 - Курсовая работа по Java"
+               BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>
