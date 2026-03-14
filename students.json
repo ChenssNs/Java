@@ -1,6 +1,6 @@
 {
-    "date": "Tue Mar 10 20:29:40 MSK 2026",
-    "count": 6,
+    "date": "Sat Mar 14 08:13:30 MSK 2026",
+    "count": 5,
     "students": [
         {
             "lastName": "Иванов",
@@ -56,17 +56,6 @@
             "idStudent": "2023005",
             "mark": 9,
             "group": "ИВТ-22"
-        },
-        {
-            "lastName": "123",
-            "firstName": "123",
-            "teacherName": "123",
-            "discipline": "123",
-            "department": "123",
-            "egeScore": 123,
-            "idStudent": "123",
-            "mark": 123,
-            "group": "123"
         }
     ]
 }

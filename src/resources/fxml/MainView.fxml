@@ -14,7 +14,7 @@
             fx:controller="controllers.MainController">
     <top>
         <Label alignment="CENTER" prefHeight="80.0" prefWidth="600.0"
-               styleClass="title-label" text="СБОРНИК ЗАДАНИЙ ПО JAVA"
+               styleClass="title-label" text="Java Tasks"
                BorderPane.alignment="CENTER">
             <font>
                 <Font size="24.0" />
@@ -67,7 +67,7 @@
     </center>
     <bottom>
         <Label alignment="CENTER" prefHeight="30.0" prefWidth="600.0"
-               styleClass="subtitle-label" text="© 2026 - Курсовая работа по Java"
+               styleClass="subtitle-label" text="© 2026 - Коленченко Максим Андреевич"
                BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>

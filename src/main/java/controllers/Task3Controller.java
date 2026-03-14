@@ -8,7 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,6 +58,10 @@ public class Task3Controller implements Initializable {
     private TextArea fileStatusArea;
     @FXML
     private Button btnBack;
+    @FXML
+    private Button btnDelete;  // Новая кнопка удаления
+    @FXML
+    private Label countLabel;
 
     private ObservableList<Student> studentData = FXCollections.observableArrayList();
 
@@ -67,6 +77,7 @@ public class Task3Controller implements Initializable {
 
         // Загрузка начальных данных
         loadInitialData();
+        updateCountLabel();
     }
 
     private void loadInitialData() {
@@ -80,15 +91,23 @@ public class Task3Controller implements Initializable {
         studentTable.setItems(studentData);
     }
 
+    private void updateCountLabel() {
+        if (countLabel != null) {
+            countLabel.setText("Всего студентов: " + studentData.size());
+        }
+    }
+
     @FXML
-    private void handleRefreshButton() {  // ДОБАВЬТЕ ЭТОТ МЕТОД
+    private void handleRefreshButton() {
         studentTable.setItems(studentData);
+        updateCountLabel();
         showInfo("Обновлено", "Таблица обновлена");
     }
 
     @FXML
     private void handleSortByEgeButton() {
         studentData.sort((s1, s2) -> Integer.compare(s2.getEgeScore(), s1.getEgeScore()));
+        showInfo("Сортировка", "Студенты отсортированы по баллу ЕГЭ (по убыванию)");
     }
 
     @FXML
@@ -115,7 +134,9 @@ public class Task3Controller implements Initializable {
             Student student = new Student(id, lastName, firstName, group, department,
                     discipline, mark, teacher, ege);
             studentData.add(student);
+
             clearNewStudentFields();
+            updateCountLabel();
             showInfo("Успех", "Студент добавлен!");
 
         } catch (NumberFormatException e) {
@@ -124,53 +145,78 @@ public class Task3Controller implements Initializable {
     }
 
     @FXML
+    private void handleDeleteStudentButton() {
+        Student selected = studentTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+            confirm.setTitle("Подтверждение удаления");
+            confirm.setHeaderText("Удаление студента");
+            confirm.setContentText("Вы уверены, что хотите удалить студента " +
+                    selected.getLastName() + " " + selected.getFirstName() + "?");
+
+            confirm.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    studentData.remove(selected);
+                    updateCountLabel();
+                    showInfo("Успех", "Студент удален");
+                }
+            });
+        } else {
+            showAlert("Ошибка", "Выберите студента для удаления");
+        }
+    }
+
+    @FXML
     private void handleSaveJsonButton() {
         try {
-            org.json.JSONArray jsonArray = new org.json.JSONArray();
+            JSONArray jsonArray = new JSONArray();
             for (Student student : studentData) {
                 jsonArray.put(student.toJSON());
             }
 
-            org.json.JSONObject root = new org.json.JSONObject();
+            JSONObject root = new JSONObject();
             root.put("students", jsonArray);
             root.put("count", studentData.size());
             root.put("date", new java.util.Date().toString());
 
-            try (java.io.FileWriter file = new java.io.FileWriter("students.json")) {
+            try (FileWriter file = new FileWriter("students.json")) {
                 file.write(root.toString(4));
             }
 
-            fileStatusArea.setText("Данные сохранены в students.json\n" +
-                    "Студентов: " + studentData.size());
+            fileStatusArea.setText("✅ Данные сохранены в файл students.json\n" +
+                    "Количество студентов: " + studentData.size() + "\n" +
+                    "Путь: " + new File("students.json").getAbsolutePath());
 
         } catch (Exception e) {
-            fileStatusArea.setText("Ошибка сохранения: " + e.getMessage());
+            fileStatusArea.setText("❌ Ошибка сохранения: " + e.getMessage());
         }
     }
 
     @FXML
     private void handleLoadJsonButton() {
         try {
-            java.io.File file = new java.io.File("students.json");
+            File file = new File("students.json");
             if (!file.exists()) {
-                fileStatusArea.setText("Файл students.json не найден!");
+                fileStatusArea.setText("❌ Файл students.json не найден!");
                 return;
             }
 
-            org.json.JSONTokener tokener = new org.json.JSONTokener(new java.io.FileReader(file));
-            org.json.JSONObject root = new org.json.JSONObject(tokener);
-            org.json.JSONArray jsonArray = root.getJSONArray("students");
+            JSONTokener tokener = new JSONTokener(new FileReader(file));
+            JSONObject root = new JSONObject(tokener);
+            JSONArray jsonArray = root.getJSONArray("students");
 
             studentData.clear();
             for (int i = 0; i < jsonArray.length(); i++) {
-                org.json.JSONObject studentJson = jsonArray.getJSONObject(i);
+                JSONObject studentJson = jsonArray.getJSONObject(i);
                 studentData.add(new Student(studentJson));
             }
 
-            fileStatusArea.setText("Загружено студентов: " + studentData.size());
+            updateCountLabel();
+            fileStatusArea.setText("✅ Данные загружены из файла students.json\n" +
+                    "Загружено студентов: " + studentData.size());
 
         } catch (Exception e) {
-            fileStatusArea.setText("Ошибка загрузки: " + e.getMessage());
+            fileStatusArea.setText("❌ Ошибка загрузки: " + e.getMessage());
         }
     }
 

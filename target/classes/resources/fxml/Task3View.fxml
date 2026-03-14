@@ -11,23 +11,19 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.Task3Controller">
     <top>
         <Label alignment="CENTER" prefHeight="50.0" prefWidth="800.0"
-               style="-fx-background-color: #FF9800; -fx-text-fill: white;"
-               text="ЗАДАНИЕ 3: Управление студентами" BorderPane.alignment="CENTER">
-            <font>
-                <Font name="System Bold" size="18.0" />
-            </font>
-        </Label>
+               style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"
+               text="ЗАДАНИЕ 3: Управление студентами" BorderPane.alignment="CENTER" />
     </top>
     <center>
         <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
@@ -46,16 +42,26 @@
                                         <TableColumn fx:id="egeColumn" prefWidth="80.0" text="ЕГЭ" />
                                     </columns>
                                 </TableView>
+
+                                <!-- Панель с кнопками управления -->
                                 <HBox alignment="CENTER" spacing="10.0">
                                     <children>
                                         <Button fx:id="btnRefresh" mnemonicParsing="false"
-                                                onAction="#handleRefreshButton" text="Обновить" />
+                                                onAction="#handleRefreshButton"
+                                                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"
+                                                text="Обновить" />
                                         <Button fx:id="btnSortByEge" mnemonicParsing="false"
                                                 onAction="#handleSortByEgeButton"
                                                 style="-fx-background-color: #FF9800; -fx-text-fill: white;"
                                                 text="Сортировать по ЕГЭ" />
+                                        <Button fx:id="btnDelete" mnemonicParsing="false"
+                                                onAction="#handleDeleteStudentButton"
+                                                style="-fx-background-color: #f44336; -fx-text-fill: white;"
+                                                text="Удалить выбранного" />
                                     </children>
                                 </HBox>
+
+                                <Label fx:id="countLabel" text="Всего студентов: 5" style="-fx-text-fill: white;" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -63,48 +69,77 @@
                         </VBox>
                     </content>
                 </Tab>
+
                 <Tab text="Добавить студента">
                     <content>
-                        <GridPane hgap="10.0" vgap="10.0">
+                        <VBox spacing="15.0">
                             <children>
-                                <Label text="№ зачетки:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                                <TextField fx:id="newIdField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-                                <Label text="Фамилия:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                <TextField fx:id="newLastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-                                <Label text="Имя:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                <TextField fx:id="newFirstNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-                                <Label text="Группа:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                <TextField fx:id="newGroupField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
-                                <Label text="Кафедра:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                                <TextField fx:id="newDepartmentField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-
-                                <Label text="Дисциплина:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                                <TextField fx:id="newDisciplineField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-
-                                <Label text="Оценка:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                                <TextField fx:id="newMarkField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-
-                                <Label text="Преподаватель:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-                                <TextField fx:id="newTeacherField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-
-                                <Label text="ЕГЭ:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-                                <TextField fx:id="newEgeField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="№ зачетки:" prefWidth="100" style="-fx-text-fill: black;" />
+                                        <TextField fx:id="newIdField" prefWidth="200" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Фамилия:" prefWidth="100" style="-fx-text-fill: black;" />
+                                        <TextField fx:id="newLastNameField" prefWidth="200" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Имя:" prefWidth="100" style="-fx-text-fill: black;" />
+                                        <TextField fx:id="newFirstNameField" prefWidth="200" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Группа:" prefWidth="100" style="-fx-text-fill: black;" />
+                                        <TextField fx:id="newGroupField" prefWidth="200" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Кафедра:" prefWidth="100" style="-fx-text-fill: black;" />
+                                        <TextField fx:id="newDepartmentField" prefWidth="200" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Дисциплина:" prefWidth="100" style="-fx-text-fill: black;" />
+                                        <TextField fx:id="newDisciplineField" prefWidth="200" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Оценка:" prefWidth="100" style="-fx-text-fill: black;" />
+                                        <TextField fx:id="newMarkField" prefWidth="200" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="Преподаватель:" prefWidth="100" style="-fx-text-fill: black;" />
+                                        <TextField fx:id="newTeacherField" prefWidth="200" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Label text="ЕГЭ:" prefWidth="100" style="-fx-text-fill: black;" />
+                                        <TextField fx:id="newEgeField" prefWidth="200" />
+                                    </children>
+                                </HBox>
                                 <Button fx:id="btnAddStudent" mnemonicParsing="false"
                                         onAction="#handleAddStudentButton"
-                                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;"
-                                        text="Добавить студента" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;"
+                                        text="Добавить студента" />
                             </children>
                             <padding>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </padding>
-                        </GridPane>
+                        </VBox>
                     </content>
                 </Tab>
+
                 <Tab text="Файлы">
                     <content>
                         <VBox alignment="CENTER" spacing="20.0">
@@ -122,7 +157,8 @@
                                     </children>
                                 </HBox>
                                 <TextArea fx:id="fileStatusArea" editable="false" prefHeight="150.0"
-                                          prefWidth="600.0" wrapText="true" />
+                                          prefWidth="600.0" wrapText="true"
+                                          style="-fx-control-inner-background: #2a2a2a; -fx-text-fill: white;" />
                             </children>
                             <padding>
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -136,7 +172,7 @@
     <bottom>
         <Button fx:id="btnBack" mnemonicParsing="false" onAction="#handleBackButton"
                 prefHeight="40.0" prefWidth="150.0"
-                style="-fx-background-color: #f44336; -fx-text-fill: white;"
+                style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 14px;"
                 text="Назад в меню" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets bottom="15.0" />

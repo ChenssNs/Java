@@ -31,14 +31,14 @@
             <children>
                 <HBox alignment="CENTER" spacing="20.0">
                     <children>
-                        <Label text="Строки:" style="-fx-text-fill: white;" />
-                        <Label fx:id="infoLabel" text="Размер матрицы: 4x4" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+                        <Label text="Строки:" style="-fx-text-fill: black;" />
+                        <Label fx:id="infoLabel" text="Размер матрицы: 4x4" style="-fx-text-fill: black; -fx-font-weight: bold;" />
                         <Slider fx:id="rowsSlider" blockIncrement="1.0" majorTickUnit="1.0"
                                 max="8.0" min="2.0" showTickLabels="true" showTickMarks="true"
                                 snapToTicks="true" value="4.0" />
                         <TextField fx:id="rowsField" editable="false" prefWidth="40.0"
                                    text="4" />
-                        <Label text="Столбцы:" style="-fx-text-fill: white;" />
+                        <Label text="Столбцы:" style="-fx-text-fill: black;" />
                         <Slider fx:id="colsSlider" blockIncrement="1.0" majorTickUnit="1.0"
                                 max="8.0" min="2.0" showTickLabels="true" showTickMarks="true"
                                 snapToTicks="true" value="4.0" />
