@@ -12,18 +12,14 @@ public class Main extends Application {
         try {
             System.out.println("Загрузка MainView.fxml...");
 
-            // Загружаем FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/fxml/MainView.fxml"));
             Parent root = loader.load();
 
-            // Получаем контроллер и передаем ему primaryStage
             MainController controller = loader.getController();
             controller.setPrimaryStage(primaryStage);
 
-            // Создаем сцену
             Scene scene = new Scene(root, 600, 500);
 
-            // Подключаем CSS - ПРОВЕРЯЕМ, ЧТО ФАЙЛ НАЙДЕН
             String cssPath = "resources/css/style.css";
             System.out.println("Загрузка CSS по пути: " + cssPath);
 
