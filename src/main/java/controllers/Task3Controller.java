@@ -1,5 +1,6 @@
 package controllers;
 
+
 import domain.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,11 +56,13 @@ public class Task3Controller implements Initializable {
     private TextField newEgeField;
 
     @FXML
+    private TextField fileNameField;  // Новое поле для имени файла
+    @FXML
     private TextArea fileStatusArea;
     @FXML
     private Button btnBack;
     @FXML
-    private Button btnDelete;  // Новая кнопка удаления
+    private Button btnDelete;
     @FXML
     private Label countLabel;
 
@@ -169,6 +172,17 @@ public class Task3Controller implements Initializable {
     @FXML
     private void handleSaveJsonButton() {
         try {
+            // Получаем имя файла из поля ввода
+            String filename = fileNameField.getText().trim();
+            if (filename.isEmpty()) {
+                filename = "students.json";
+            }
+
+            // Добавляем расширение .json, если его нет
+            if (!filename.endsWith(".json")) {
+                filename += ".json";
+            }
+
             JSONArray jsonArray = new JSONArray();
             for (Student student : studentData) {
                 jsonArray.put(student.toJSON());
@@ -179,13 +193,15 @@ public class Task3Controller implements Initializable {
             root.put("count", studentData.size());
             root.put("date", new java.util.Date().toString());
 
-            try (FileWriter file = new FileWriter("students.json")) {
+            try (FileWriter file = new FileWriter(filename)) {
                 file.write(root.toString(4));
             }
 
-            fileStatusArea.setText("✅ Данные сохранены в файл students.json\n" +
+            File file = new File(filename);
+            fileStatusArea.setText("✅ Данные сохранены в файл: " + filename + "\n" +
                     "Количество студентов: " + studentData.size() + "\n" +
-                    "Путь: " + new File("students.json").getAbsolutePath());
+                    "Размер файла: " + file.length() + " байт\n" +
+                    "Путь: " + file.getAbsolutePath());
 
         } catch (Exception e) {
             fileStatusArea.setText("❌ Ошибка сохранения: " + e.getMessage());
@@ -195,9 +211,21 @@ public class Task3Controller implements Initializable {
     @FXML
     private void handleLoadJsonButton() {
         try {
-            File file = new File("students.json");
+            // Получаем имя файла из поля ввода
+            String filename = fileNameField.getText().trim();
+            if (filename.isEmpty()) {
+                filename = "students.json";
+            }
+
+            // Добавляем расширение .json, если его нет
+            if (!filename.endsWith(".json")) {
+                filename += ".json";
+            }
+
+            File file = new File(filename);
             if (!file.exists()) {
-                fileStatusArea.setText("❌ Файл students.json не найден!");
+                fileStatusArea.setText("❌ Файл не найден: " + filename + "\n" +
+                        "Проверьте имя файла и путь: " + file.getAbsolutePath());
                 return;
             }
 
@@ -212,8 +240,10 @@ public class Task3Controller implements Initializable {
             }
 
             updateCountLabel();
-            fileStatusArea.setText("✅ Данные загружены из файла students.json\n" +
-                    "Загружено студентов: " + studentData.size());
+            fileStatusArea.setText("✅ Данные загружены из файла: " + filename + "\n" +
+                    "Загружено студентов: " + studentData.size() + "\n" +
+                    "Дата сохранения: " + root.optString("date", "неизвестно") + "\n" +
+                    "Путь: " + file.getAbsolutePath());
 
         } catch (Exception e) {
             fileStatusArea.setText("❌ Ошибка загрузки: " + e.getMessage());

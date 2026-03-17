@@ -50,10 +50,10 @@
                                                 onAction="#handleRefreshButton"
                                                 style="-fx-background-color: #4CAF50; -fx-text-fill: white;"
                                                 text="Обновить" />
-                                        <Button fx:id="btnSortByEge" mnemonicParsing="false"
-                                                onAction="#handleSortByEgeButton"
-                                                style="-fx-background-color: #FF9800; -fx-text-fill: white;"
-                                                text="Сортировать по ЕГЭ" />
+<!--                                        <Button fx:id="btnSortByEge" mnemonicParsing="false"-->
+<!--                                                onAction="#handleSortByEgeButton"-->
+<!--                                                style="-fx-background-color: #FF9800; -fx-text-fill: white;"-->
+<!--                                                text="Сортировать по ЕГЭ" />-->
                                         <Button fx:id="btnDelete" mnemonicParsing="false"
                                                 onAction="#handleDeleteStudentButton"
                                                 style="-fx-background-color: #f44336; -fx-text-fill: white;"
@@ -144,18 +144,31 @@
                     <content>
                         <VBox alignment="CENTER" spacing="20.0">
                             <children>
+                                <HBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <Label text="Имя файла:" style="-fx-text-fill: black; -fx-font-size: 14px;" />
+                                        <TextField fx:id="fileNameField" prefWidth="200"
+                                                   promptText="students.json"
+                                                   text="students.json"
+                                                   style="-fx-background-color: #2a2a2a; -fx-text-fill: white;" />
+                                    </children>
+                                </HBox>
+
                                 <HBox alignment="CENTER" spacing="20.0">
                                     <children>
                                         <Button fx:id="btnSaveJson" mnemonicParsing="false"
                                                 onAction="#handleSaveJsonButton" prefHeight="50.0" prefWidth="150.0"
-                                                style="-fx-background-color: #2196F3; -fx-text-fill: white;"
-                                                text="Сохранить в JSON" />
+                                                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px;"
+                                                text="Сохранить в файл" />
                                         <Button fx:id="btnLoadJson" mnemonicParsing="false"
                                                 onAction="#handleLoadJsonButton" prefHeight="50.0" prefWidth="150.0"
-                                                style="-fx-background-color: #FF9800; -fx-text-fill: white;"
-                                                text="Загрузить из JSON" />
+                                                style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 14px;"
+                                                text="Загрузить из файла" />
                                     </children>
                                 </HBox>
+
+                                <!-- Информация о файле -->
+                                <Label text="Информация о файле:" style="-fx-text-fill: black; -fx-font-size: 14px; -fx-font-weight: bold;" />
                                 <TextArea fx:id="fileStatusArea" editable="false" prefHeight="150.0"
                                           prefWidth="600.0" wrapText="true"
                                           style="-fx-control-inner-background: #2a2a2a; -fx-text-fill: white;" />
